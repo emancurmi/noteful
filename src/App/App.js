@@ -17,7 +17,7 @@ class App extends Component {
 
     componentDidMount() {
         // fake date loading from API call
-        setTimeout(() => this.setState(dummyStore), 600);
+        setTimeout(() => this.setState(dummyStore), 1000);
     }
 
     renderNavRoutes() {
