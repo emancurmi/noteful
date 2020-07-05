@@ -4,7 +4,7 @@ import './AddNote.css';
 export default function AddNote(props) {
     return (
 
-        <form action="/notes" method="post">
+        <form action="/notes" method="post" className="Noteful-form">
             <p>
                 <label>Title</label><br />
                 <input type="text" name="title" required/>

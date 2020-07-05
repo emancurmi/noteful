@@ -3,7 +3,7 @@ import './AddFolder.css';
 
 export default function AddFolder(props) {
     return (
-        <form action="/folder" method="post">
+        <form action="/folder" method="post" className="Noteful-form">
                 <p>
                     <label>Folder Name</label><br/>
                     <input type="text" name="name" required/>
