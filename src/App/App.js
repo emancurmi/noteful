@@ -8,6 +8,8 @@ import NotePageMain from '../NotePageMain/NotePageMain';
 import dummyStore from '../dummy-store';
 import {getNotesForFolder, findNote, findFolder} from '../notes-helpers';
 import './App.css';
+import AddNote from '../AddNote/AddNote';
+import AddFolder from '../AddFolder/AddFolder';
 
 class App extends Component {
     state = {
@@ -47,8 +49,11 @@ class App extends Component {
                         return <NotePageNav {...routeProps} folder={folder} />;
                     }}
                 />
+
                 <Route path="/add-folder" component={NotePageNav} />
+
                 <Route path="/add-note" component={NotePageNav} />
+
             </>
         );
     }
@@ -85,6 +90,10 @@ class App extends Component {
                         return <NotePageMain {...routeProps} note={note} />;
                     }}
                 />
+
+                <Route path="/add-folder" component={AddFolder} />
+
+                <Route path="/add-note" component={AddNote} />
             </>
         );
     }

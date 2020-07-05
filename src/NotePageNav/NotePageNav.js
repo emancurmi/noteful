@@ -17,10 +17,10 @@ export default function NotePageNav(props) {
         Back
       </CircleButton>
       {props.folder && (
-        <h3 className='NotePageNav__folder-name'>
+              <h3 className='NotePageNav__folder-name'>
           {props.folder.name}
         </h3>
-      )}
+          )}
     </div>
   )
 }
