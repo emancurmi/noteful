@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './AddNote.css';
+import Select from 'react-select';
 
-export default function AddNote(props) {
-    return (
+export default class AddNote extends Component {
+    
 
-        <form action="/notes" method="post" className="Noteful-form">
+    render() {
+
+        const folders = this.props.folders;
+
+        return (
+
+            <form action="/notes" method="post" className="Noteful-form">
             <p>
                 <label>Title</label><br />
                 <input type="text" name="title" required/>
@@ -12,7 +19,7 @@ export default function AddNote(props) {
 
             <p>
                 <label>Folder</label><br />
-                <input type="text" name="folder" required />
+                <Select options={folders} />
             </p>
             <p>
                 <label>Note</label><br />
@@ -23,6 +30,8 @@ export default function AddNote(props) {
                 <button type="reset">Reset form</button>
             </p>
         </form>
-
-    )
+        );
+    }
 }
+
+

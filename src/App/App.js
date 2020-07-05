@@ -93,7 +93,7 @@ class App extends Component {
 
                 <Route path="/add-folder" component={AddFolder} />
 
-                <Route path="/add-note" component={AddNote} />
+                <Route path="/add-note" component={AddNote} folders={folders} />
             </>
         );
     }
