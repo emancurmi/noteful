@@ -1,13 +1,21 @@
 import React, { Component } from 'react'
 import './AddNote.css';
 import Select from 'react-select';
+import dummyStore from '../dummy-store';
 
 export default class AddNote extends Component {
-    
+    state = {
+        notes: [],
+        folders: []
+    };
+
+    componentDidMount() {
+         this.setState(dummyStore);
+    }
 
     render() {
 
-        const folders = this.props.folders;
+        console.log(this.state.folders);
 
         return (
 
@@ -18,8 +26,10 @@ export default class AddNote extends Component {
             </p>
 
             <p>
-                <label>Folder</label><br />
-                <Select options={folders} />
+                    <label>Folder</label><br />
+                    <select value={this.state.mycar}>
+                        {this.state.folders.map(folder => <option value={folder.id}>{folder.name}</option>)}
+                    </select>
             </p>
             <p>
                 <label>Note</label><br />
