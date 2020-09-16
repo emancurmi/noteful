@@ -1,73 +1,77 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-// import {format} from 'date-fns';
 import NotefulContext from '../NotefulContext';
+import { Link } from 'react-router-dom';
 import config from '../config';
-import PropTypes from 'prop-types';
-import './Note.css';
+
 
 export default class Note extends React.Component {
     static defaultProps = {
-        onDeleteNote: () => {}
+        handleDeleteNote: () => { },
+        onDeleteNote: () => { },
+        match: {
+            params: {}
+        }
     }
-    static contextType = NotefulContext
 
-    handleClickDelete = (e) => {
-        e.preventDefault() 
+    static contextType = NotefulContext;
+
+
+    handleDeleteNote = (event) => {
         const noteId = this.props.id
-    
-        fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
+
+        fetch(`${config.API_NOTES}/${noteId}`, {
             method: 'DELETE',
-            headers: {
-                'content-type': 'application/json'
-            },
         })
             .then(res => {
-                if (!res.ok)
-                    return res.json().then(e => Promise.reject(e))
-                return res.json()
+                if (!res.ok) {
+                    throw new Error(res.statusText)
+                }
             })
             .then(() => {
                 this.context.deleteNote(noteId)
-                this.props.onDeleteNote(noteId)
             })
             .catch(error => {
-                console.error({error})
+                console.error({ error })
             })
     }
-    
+
     render() {
-        const {name, id, modified} = this.props
+
         return (
-            <div className = 'note'>
-                <h2 className = 'noteTitle'>
-                    <Link to = {`/note/${id}`}>
-                        {name}
-                    </Link>
-                </h2>
-                <button 
-                    className = 'deleteNote'
-                    type = 'button'
-                    onClick = {this.handleClickDelete}>
-                    remove
-                </button>
-                <div className = 'noteDate'>
-                    <div className = 'modifiedDate'>
-                        Modified 
-                        {' '}
-                        <span className = 'Date'>
-                            {modified}
-                            {/* {format(props.modified, 'Do MMM YYYY')} */}
-                        </span>
-                    </div>
-                </div>
-                
+            <div className="note">
+                <div key={this.props.id}>
+                    {/* <h3> */}
+                        <Link to={`/note/${this.props.id}`}>
+                            <h3>{this.props.name}</h3>
+                        <p>Modified on {(this.props.modified).slice(0, 10)}</p>
+                        {/* <button
+                            type="button"
+                            id="delete-note-link-little"
+                            onClick={this.handleDeleteNote}>
+                            Delete Note
+                            </button> */}
+                        <p>{this.props.content}</p>
+                        </Link>
+                    {/* </h3> */}
+                {/* <p>
+                    {this.props.modified}
+                    Modified on {(this.props.modified).slice(0, 10)}
+                </p> */}
+                <button
+                    type="button"
+                    id="delete-note-link-little"
+                    onClick={this.handleDeleteNote}>
+                    Delete Note
+                            </button>
+                {/* <p>{this.props.content}</p> */}
             </div>
+            </div >
         )
     }
 }
 
-Note.propTypes = {
-    value: PropTypes.func.isRequired,  
-    value: PropTypes.string.isRequired      
-};
+Note.defaultProps = {
+    notes: [],
+    content: "",
+    name: "",
+}
