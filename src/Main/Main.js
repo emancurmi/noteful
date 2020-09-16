@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import NotefulContext from '../NotefulContext';
 import Note from '../Note/Note'
 
-export default class Main extends React.Component {
+export default class Main extends Component {
     static defaultProps = {
         match: {
             params: {}
@@ -12,12 +12,12 @@ export default class Main extends React.Component {
     static contextType = NotefulContext
 
     render() {
-        const { folderId } = this.props.match.params
+        const { folderId } = this.props.match.params;
         const { notes } = this.context
         const getNotesForFolder = (notes = [], folderId) => (
             (!folderId)
                 ? notes
-                : notes.filter(note => note.folder_id === folderId)
+                : notes.filter(note => note.folder_id == folderId)
         )
 
         const notesForFolder = getNotesForFolder(notes, folderId)
@@ -31,6 +31,7 @@ export default class Main extends React.Component {
                                 name={note.note_name}
                                 modified={note.date_published}
                             />
+                            
                         </li>
                     )}
                 </ul>
