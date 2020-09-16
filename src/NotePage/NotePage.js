@@ -36,7 +36,7 @@ export default class NotePage extends React.Component {
     const { noteId } = this.props.match.params
 
     const getNotes = notes
-      .filter(note => note.id == noteId)
+      .filter(note => note.id === noteId)
       .map(note => {
         return (
           <section className="notes-display" key={note.id}>

@@ -17,7 +17,7 @@ export default class Main extends React.Component {
         const getNotesForFolder = (notes = [], folderId) => (
             (!folderId)
                 ? notes
-                : notes.filter(note => note.folder_id == folderId)
+                : notes.filter(note => note.folder_id === folderId)
         )
 
         const notesForFolder = getNotesForFolder(notes, folderId)
