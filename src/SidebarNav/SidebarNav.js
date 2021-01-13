@@ -47,6 +47,7 @@ export default class SidebarNav extends React.Component {
     }
 }
 SidebarNav.defaultProps = {
+    history: '/',
     notes: [],
     folders: [],
     name: ""

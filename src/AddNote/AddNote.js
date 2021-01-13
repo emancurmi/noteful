@@ -14,8 +14,7 @@ export default class AddNote extends Component {
         folderId: '',
         content: '',
         errors: {
-            folderId:
-                'You must select a folder',
+            folderId: 'You must select a folder',
             name: 'You must enter a note title',
             content: 'You must enter a description'
         }
@@ -165,4 +164,8 @@ export default class AddNote extends Component {
             </form>
         );
     }
+}
+
+AddNote.defaultProps = {
+    history: '/',
 }

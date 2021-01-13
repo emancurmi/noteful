@@ -2,6 +2,7 @@ import React from 'react';
 import config from '../config';
 import NotefulContext from '../NotefulContext';
 import ValidationError from '../ValidationError';
+import ErrorBoundary from '../ErrorBoundary';
 import PropTypes from 'prop-types';
 
 export default class AddFolder extends React.Component {
@@ -13,24 +14,24 @@ export default class AddFolder extends React.Component {
         errorCount: null,
         name: '',
         errors: {
-			name: 'You must enter a note title'
+            name: 'You must enter a note title'
         }
     }
 
     updateErrorCount = () => {
-		let errors = this.state.errors;
-		let count = 0;
-        
-		Object.values(errors).forEach(val => {
-			if (val.length > 0) {
-				count++;
-			}
-		});
-		this.setState({ errorCount: count });
+        let errors = this.state.errors;
+        let count = 0;
+
+        Object.values(errors).forEach(val => {
+            if (val.length > 0) {
+                count++;
+            }
+        });
+        this.setState({ errorCount: count });
         let valid = count === 0 ? true : false;
-		this.setState({ formValid: valid });
+        this.setState({ formValid: valid });
     };
-    
+
     validateEntry = (name, value) => {
         let err = '';
 
@@ -91,7 +92,8 @@ export default class AddFolder extends React.Component {
         const { errors } = this.state;
 
         return (
-            <form className="addFolderForm" onSubmit={e => this.handleSubmit(e)}>
+            <ErrorBoundary>
+                <form className="addFolderForm" onSubmit={e => this.handleSubmit(e)}>
                     <legend><h3>Add Folder</h3></legend>
                     <label htmlFor="name"><h4>Folder Name</h4></label>
                     <input
@@ -109,27 +111,21 @@ export default class AddFolder extends React.Component {
                     >
                         Submit
                     </button>
-                {this.state.errorCount !== null ? (
-					<p className="form-status">
-						Form is {this.state.formValid ? 'complete' : 'incomplete'}
-					</p>
-				) : null}
-            </form>
+                    {this.state.errorCount !== null ? (
+                        <p className="form-status">
+                            Form is {this.state.formValid ? 'complete' : 'incomplete'}
+                        </p>
+                    ) : null}
+                </form>
+            </ErrorBoundary>
         );
     }
 }
 
 AddFolder.defaultProps = {
-    folders: [],
-    content: "",
-    name: "",
-    error: null
+    history:'/',
 }
 
 AddFolder.propTypes = {
-    folders: PropTypes.array,
-    name: PropTypes.string.isRequired,
-    id: PropTypes.string,
-    content: PropTypes.string,
-    modified: PropTypes.string,
+    history: PropTypes.string,
 }

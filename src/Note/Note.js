@@ -71,6 +71,8 @@ export default class Note extends React.Component {
 }
 
 Note.defaultProps = {
+    id: 0,
+    modified: 10/10/88,
     notes: [],
     content: "",
     name: "",
