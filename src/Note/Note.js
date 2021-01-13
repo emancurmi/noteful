@@ -2,7 +2,7 @@ import React from 'react';
 import NotefulContext from '../NotefulContext';
 import { Link } from 'react-router-dom';
 import config from '../config';
-
+import PropTypes from "prop-types";
 
 export default class Note extends React.Component {
     static defaultProps = {
@@ -76,4 +76,12 @@ Note.defaultProps = {
     notes: [],
     content: "",
     name: "",
+}
+
+Note.propTypes = {
+    id: PropTypes.number.isRequired,
+    modified: PropTypes.string,
+    notes: PropTypes.array,
+    content: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
 }

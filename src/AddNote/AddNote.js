@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NotefulContext from '../NotefulContext';
 import config from '../config';
 import ValidationError from '../ValidationError';
+import PropTypes from 'prop-types';
 
 export default class AddNote extends Component {
     static contextType = NotefulContext;
@@ -168,4 +169,8 @@ export default class AddNote extends Component {
 
 AddNote.defaultProps = {
     history: '/',
+}
+
+AddNote.propTypes = {
+    history: PropTypes.string,
 }

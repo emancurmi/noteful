@@ -2,6 +2,8 @@
 import React from 'react';
 import NotefulContext from '../NotefulContext';
 import config from '../config';
+import PropTypes from "prop-types";
+
 
 
 export default class NotePage extends React.Component {
@@ -69,5 +71,13 @@ export default class NotePage extends React.Component {
 
 NotePage.defaultProps = {
     history: '/',
-    id: 0
+    noteId: 0,
+    noteNum: 0
+}
+
+NotePage.propTypes = {
+    history: PropTypes.string,
+    noteId: PropTypes.number.isRequired,
+    noteNum: PropTypes.number.isRequired,
+
 }

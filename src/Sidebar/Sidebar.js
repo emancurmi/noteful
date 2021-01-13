@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import NotefulContext from '../NotefulContext';
-import PropTypes from 'prop-types';
 
 export default class Sidebar extends React.Component {
 
@@ -35,14 +34,4 @@ export default class Sidebar extends React.Component {
             </nav>
         )
     }
-}
-
-Sidebar.defaultProps = {
-    folders: [],
-}
-
-Sidebar.propTypes = {
-    folders: PropTypes.array,
-    id: PropTypes.string,
-    name: PropTypes.string
 }

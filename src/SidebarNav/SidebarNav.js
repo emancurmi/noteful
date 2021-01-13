@@ -15,21 +15,21 @@ export default class SidebarNav extends React.Component {
     static contextType = NotefulContext;
 
     render() {
-        const { notes = [], folders = [] } = this.context
+        //const { notes = [], folders = [] } = this.context
 
-        const { noteId } = this.props.match.params;
+        //const { noteId } = this.props.match.params;
 
-        const noteFolderId = notes.filter(note => note.id == noteId)
+        //const noteFolderId = notes.filter(note => note.id == noteId)
 
-        const idForFolder = folders.filter(folder => folder.id == 2)
+        //const idForFolder = folders.filter(folder => folder.id == 2)
 
-        const getFolderName = (noteId, folders = []) => (
-            (noteFolderId.folder_id === idForFolder.id)
-                ? idForFolder.map(folder => folder.folder_name)
-                : folders.filter(folder => folder.id)
-        )
+        //const getFolderName = (noteId, folders = []) => (
+        //    (noteFolderId.folder_id === idForFolder.id)
+        //        ? idForFolder.map(folder => folder.folder_name)
+        //        : folders.filter(folder => folder.id)
+        //)
 
-       const nameYet = getFolderName(noteId, folders)
+       //const nameYet = getFolderName(noteId, folders)
 
         return (
             <div className="SidebarNav">
@@ -48,14 +48,8 @@ export default class SidebarNav extends React.Component {
 }
 SidebarNav.defaultProps = {
     history: '/',
-    notes: [],
-    folders: [],
-    name: ""
 }
 
 SidebarNav.propTypes = {
-    notes: PropTypes.array,
-    folders: PropTypes.array,
-    name: PropTypes.string,
-    noteId: PropTypes.number
+    history: PropTypes.string,
 }
